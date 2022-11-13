@@ -39,9 +39,29 @@ const controller = {
     },
 
 
-    destroy: async () => {
-
-    },
+    destroy: async(req,res)=>{
+      let {id} = req.params
+      try{
+        let one = await City.findOneAndDelete({_id: id})
+        if(one){
+          res.status(200).json({
+            id: one._id,
+            success: true,
+            message: "the city was deleted successfully"
+          })
+        }else{
+          res.status(404).json({
+            success: false,
+            message: "the city was not found"
+          })
+        }
+      }catch (error) {
+        res.status(400).json({
+          success: false,
+          message: error.message,
+        });
+      }
+      },
 }
 
 module.exports = controller
