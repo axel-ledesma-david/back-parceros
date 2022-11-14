@@ -18,41 +18,61 @@ const controller = {
     }
   },
 
-  update: async(req,res) =>{
+  update: async (req, res) => {
+    let { id } = req.params;
 
-    let {id } = req.params
-  
-  try{
-  
-    let one = await ItineraryCity.findOneAndUpdate({_id: id}, req.body, {new:true})
-  
-    if(one){
+    try {
+      let one = await ItineraryCity.findOneAndUpdate({ _id: id }, req.body, {
+        new: true,
+      });
+
+      if (one) {
         res.status(200).json({
-        id: one._id,
-        success: true,
-        message: "the itinerary was update successfully"   
-      })
-    }else{
+          id: one._id,
+          success: true,
+          message: "the itinerary was update successfully",
+        });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "the itinerary was not found",
+        });
+      }
+    } catch (error) {
       res.status(400).json({
         success: false,
-        message: "the itinerary was not found",
-      })
-      
+        message: error.message,
+      });
     }
-  
+  },
+
+
+destroy: async(req,res)=>{
+  let {id} = req.params
+  try{
+    let one = await ItineraryCity.findOneAndDelete({_id: id})
+    if(one){
+      res.status(200).json({
+        id: one._id,
+        success: true,
+        message: "the itinerary was deleted successfully"
+      })
+    }else{
+      res.status(404).json({
+        success: false,
+        message: "the itinerary was not found"
+      })
+    }
   }catch (error) {
     res.status(400).json({
       success: false,
       message: error.message,
     });
-  
+  }
   }
 }
-};
 
-
-
-
+ 
 
 
 module.exports = controller;
