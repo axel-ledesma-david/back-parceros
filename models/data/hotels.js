@@ -48,7 +48,7 @@ let hotels = [
       "userId":"636d864fec3e352a19f44ea0"
     },
     {
-    "name":" JW Marriott Marquis",
+    "name":"JW Marriott Marquis",
     "photo":["https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/3f/1c/77/exterior.jpg?w=700&h=-1&s=1","https://www.oyster.com/wp-content/uploads/sites/35/2019/05/pool-v16976953-1440.jpg","http://secure.s.forbestravelguide.com/img/properties/jw-marriott-marquis-hotel-dubai/jw-marriott-marquis-hotel-dubai-presidential-suite-bedroom.jpg"],
     "capacity":530,
     "description":" JW Marriott Marquis Hotel Dubai is an excellent choice for travelers visiting Dubai, offering a luxurious environment alongside many helpful amenities designed to enhance your stay.",
@@ -56,7 +56,7 @@ let hotels = [
     "userId":"636d864fec3e352a19f44e9e"
   },
   {
-    "name":" voco Orchard",
+    "name":"voco Orchard",
     "photo":["https://static.wixstatic.com/media/8471ce_53edf95395464ae4a1b8a6723e76b85a~mv2.png/v1/fit/w_1000%2Ch_1000%2Cal_c/file.png","https://pix10.agoda.net/hotelImages/10596/-1/ff40cd9aef8f59a31957294d913ac7a7.jpg?ca=9&ce=1&s=1024x768","https://milelion-com0.exactdn.com/wp-content/uploads/2021/09/photo_2021-09-30_17-40-21.jpg?strip=all&lossy=1&ssl=1"],
     "capacity":720,
     "description":" In Singapore there are a large number of Chinese food restaurants. So when youre here, dont miss places like Palm Beach Seafood Restaurant, JUMBO Seafood (Riverside Point).",
@@ -64,7 +64,7 @@ let hotels = [
     "userId":"636d864fec3e352a19f44e9e"
   },
   {
-    "name":" The Montcalm Royal London House",
+    "name":"The Montcalm Royal London House",
     "photo":["https://i.travelapi.com/hotels/13000000/12710000/12703900/12703815/31d17948_z.jpg","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/86/5e/5d/montcalm-royal-london.jpg?w=700&h=-1&s=1","https://www.themontcalm.com/wp-content/themes/themontcalm/images/hotel_images/the_montcalm_royal_london_house/new/RLH-hotel-landing-04.jpg"],
     "capacity":430,
     "description":" See why so many travelers make Montcalm Royal London House - City of London their hotel of choice when visiting London. In addition to providing the ideal combination of quality, comfort and location.",
@@ -72,7 +72,7 @@ let hotels = [
     "userId":"636d864fec3e352a19f44e9e"
   },
   {
-    "name":" Hotel de Berri Champs-Élysées",
+    "name":"Hotel de Berri Champs-Élysées",
     "photo":["https://www.privateupgrades.com/_data/default-hotel_image/11/55319/hotel-de-berri-3_1400x1400_auto.jpg","https://d17k8relgo9zj1.cloudfront.net/rcimg/2/9kzIHJayFJV7DqE7o9Pshh6zFfk1Gy9UHHnXhufaqFo/fit/0/1000/ce/1/aHR0cHM6Ly9pLnRyYXZlbGFwaS5jb20vaG90ZWxzLzEwMDAwMDAvODgwMDAwLzg3NDIwMC84NzQxNzgvNWMyMzFlZWIuanBn.jpg","https://i.ytimg.com/vi/irJhif3zmBg/maxresdefault.jpg"],
     "capacity":510,
     "description":" Hotel de Berri, A Luxury Collection Hotel, Paris puts the best of Paris at your fingertips, making your stay both relaxing and enjoyable.",
@@ -80,7 +80,7 @@ let hotels = [
     "userId":"636d864fec3e352a19f44e9d"
   },
   {
-    "name":" Oakwood Premier",
+    "name":"Oakwood Premier",
     "photo":["https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/45/07/e8/oakwood-premier-phnom.jpg?w=700&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/c5/79/58/swimming-pool.jpg?w=700&h=-1&s=1","https://cf.bstatic.com/xdata/images/hotel/max300/156924928.jpg?k=8b228725d14ecd1554c7498660c7eb752eb75cb3a1cfb1bdea05298883072f01&o=&hp=1"],
     "capacity":470,
     "description":" The rooms at the hotel offer a flat screen TV, a refrigerator, and a kitchenette to make you feel at home, and getting online is easy, with free wifi available..",
@@ -88,7 +88,7 @@ let hotels = [
     "userId":"636d864fec3e352a19f44e9d"
   },
   {
-    "name":" Mövenpick Moscow Taganskaya",
+    "name":"Mövenpick Moscow Taganskaya",
     "photo":["https://ak-d.tripcdn.com/images/0201g1200089esrh7A8A9_R_800_525.jpg","https://cf.bstatic.com/xdata/images/hotel/max1024x768/273817353.jpg?k=58585b5635b0f489b0571ceb8924fa462ca5aee18b84442d3aa24aab33dba7ce&o=&hp=1","https://m.ahstatic.com/is/image/accorhotels/Moscow_Taganskaya__i129196:3by2?wid=546&hei=365&resMode=sharp2&op_usm=1.75,0.3,2,0&dpr=off&iccEmbed=true&icc=sRGB&qlt=65"],
     "capacity":620,
     "description":" An excellent choice for travelers visiting Wellington, offering a romantic environment alongside many helpful amenities designed to enhance your stay.",
