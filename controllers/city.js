@@ -28,16 +28,23 @@ const controller = {
       let order ={}
 
 
-      if(req.query.order){
-        order = {continent: req.query.order}
+      if(req.query.name){
+        query= {name: new RegExp(req.query.name, 'i')}
       }
 
+      if(req.query.continent){
+        query= {
+          ...query,
+          continent: req.query.continent }
+      }
+
+
       try{
-        let all = await City.find(query).sort(order)
+        let all = await City.find(query).populate("userId","name")
         res.status(200).json({
           response: all,
           success: true,
-          message: "users were found",
+          message: "cities were found",
         });
       }catch (error) {
         res.status(400).json({
@@ -46,6 +53,29 @@ const controller = {
         });
       }
     },
+
+
+
+    readcitybyid: async (req, res) => {
+      let { id } = req.params;
+  
+      try {
+        let city = await City.findOne({ _id: id });
+  
+        if (city) {
+          res.status(200).json(city);
+        } 
+        
+      } catch (error) {
+        res.status(400).json({
+          success: false,
+          message: error.message,
+        });
+      }
+    },
+
+
+
 
 
     update: async (req, res) => {
@@ -100,6 +130,8 @@ const controller = {
         });
       }
       },
+
+
 }
 
 module.exports = controller
