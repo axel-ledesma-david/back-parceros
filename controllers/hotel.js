@@ -52,6 +52,29 @@ const controller = {
             })
         }
     },
+    readHotelDetail: async (req, res) => {
+        let { id } = req.params
+        try {
+            let hotelDetail = await Hotel.findOne({_id : id})
+            if (hotelDetail){
+                res.status(200).json({
+                    res: hotelDetail,
+                    success: true,
+                    message: "Hotel detail Found" 
+                })
+            } else {
+                res.status(404).json({
+                    seccess: false,
+                    message: "The hotel detail is not found"
+                })
+            }
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message 
+            })
+        }
+    },
     update: async () => {
 
     },
