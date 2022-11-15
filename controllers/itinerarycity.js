@@ -18,6 +18,24 @@ const controller = {
     }
   },
 
+  readitinerarycity: async (req, res) => {
+    try{
+      console.log(req.query.cityId);
+      let all = await ItineraryCity.find({cityId: req.query.cityId}).populate("cityId","name")
+      res.status(200).json({
+        response: all,
+        success: true,
+        message: "Itineraries were found",
+      });
+    }catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  
+  },
+
   update: async (req, res) => {
     let { id } = req.params;
 
