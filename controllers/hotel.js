@@ -75,8 +75,29 @@ const controller = {
             })
         }
     },
-    update: async () => {
+    update: async (req, res) => {
+        let { id } = req.params
+        try {
+            let one = await Hotel.findOneAndUpdate({ _id : id}, req.body, { new: true })
+            if (one){
+                res.status(200).json({
+                    res: one,
+                    success: true,
+                    message: "hotel were updated successfully"
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "hotel is not found"
+                })
+            }
 
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
     },
     destroy: async () => {
 
