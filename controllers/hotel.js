@@ -65,7 +65,7 @@ const controller = {
             } else {
                 res.status(404).json({
                     seccess: false,
-                    message: "The hotel detail is not found"
+                    message: "Error 404 The hotel detail is not found"
                 })
             }
         } catch (err) {
