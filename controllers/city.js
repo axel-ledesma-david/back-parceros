@@ -25,8 +25,6 @@ const controller = {
 
     read: async (req, res) => {
       let query = {}
-      let order ={}
-
 
       if(req.query.name){
         query= {name: new RegExp(req.query.name, 'i')}
@@ -37,8 +35,6 @@ const controller = {
           ...query,
           continent: req.query.continent }
       }
-
-
       try{
         let all = await City.find(query).populate("userId","name")
         res.status(200).json({

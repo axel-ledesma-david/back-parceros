@@ -21,7 +21,7 @@ const controller = {
   readitinerarycity: async (req, res) => {
     try{
       console.log(req.query.cityId);
-      let all = await ItineraryCity.find({cityId: req.query.cityId}).populate("cityId","name")
+      let all = await ItineraryCity.find({cityId: req.query.cityId})
       res.status(200).json({
         response: all,
         success: true,
