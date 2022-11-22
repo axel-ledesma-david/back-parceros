@@ -31,14 +31,14 @@ const schema = joi.object({
             "string.empty": "This field capacity is empty!"
         }),
     cityId: joi
-        .any()
+        .string()
         .required()
         .messages({
             "any.required": "This field is required!",
             "string.empty": "This field city is empty!"
         }),
     userId: joi
-        .any()
+        .string()
         .required()
         .messages({
             "any.required": "This field is required!",
