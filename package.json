@@ -7,7 +7,6 @@
     "dev": "nodemon ./bin/www",
     "test": "mocha",
     "test-hotels": " mocha ./test/hotels.test.js"
-
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
