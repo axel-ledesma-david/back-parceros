@@ -20,7 +20,7 @@ const schema = joi.object({
         .messages({
             "string.base": "Please, enter a url!!",
             "any.required": "This field is required!",
-            "string.epmty": "This field name is empty!"
+            "string.empty": "This field photo is empty!"
         }),
     capacity: joi
         .number()
@@ -28,21 +28,21 @@ const schema = joi.object({
         .messages({
             "number.base": "Please, enter a number!!",
             "any.required": "This field is required!",
-            "string.epmty": "This field name is empty!"
+            "string.empty": "This field capacity is empty!"
         }),
     cityId: joi
         .any()
         .required()
         .messages({
             "any.required": "This field is required!",
-            "string.epmty": "This field name is empty!"
+            "string.empty": "This field city is empty!"
         }),
     userId: joi
         .any()
         .required()
         .messages({
             "any.required": "This field is required!",
-            "string.epmty": "This field name is empty!"
+            "string.empty": "This field user is empty!"
         })
 })
 
