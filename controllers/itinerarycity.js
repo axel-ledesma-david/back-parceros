@@ -19,14 +19,30 @@ const controller = {
   },
 
   readitinerarycity: async (req, res) => {
+    console.log(req.query);
+    let query = {};
+    if (req.query.cityId) {
+      query = {
+        ...query,
+        cityId: req.query.cityId,
+      };
+    }
+
+    if (req.query.userId) {
+      query = {
+        ...query,
+        userId: req.query.userId,
+      };
+    }
+
     try{
       console.log(req.query.cityId);
-      let all = await ItineraryCity.find({cityId: req.query.cityId})
+      let all = await ItineraryCity.find(query)
       res.status(200).json({
         response: all,
         success: true,
         message: "Itineraries were found",
-      });
+      }); 
     }catch (error) {
       res.status(400).json({
         success: false,
@@ -35,6 +51,25 @@ const controller = {
     }
   
   },
+
+  readitinerarybyid: async (req, res) => {
+
+    try {
+      let itinerary = await ItineraryCity.findOne({_id: req.params.id});
+
+      if (itinerary) {
+        res.status(200).json(itinerary);
+      }
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  },
+
+
+
 
   update: async (req, res) => {
     let { id } = req.params;
