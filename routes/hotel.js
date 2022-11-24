@@ -9,5 +9,6 @@ router.route('/hotels').get(read)
 router.route('/hotels/:id').get(readHotelDetail)
 router.route('/hotels/:id').patch(update)
 router.route('/hotels/:id').delete(destroy)
+/* router.route('/hotels').get(getHotelByAdmin) */
 
 module.exports = router;
