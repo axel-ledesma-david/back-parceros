@@ -28,7 +28,7 @@ const schema = joi.object({
         .messages({
             "number.base": "Please, enter a number!!",
             "any.required": "This field is required!",
-            "string.empty": "This field capacity is empty!"
+            "number.empty": "This field capacity is empty!"
         }),
     cityId: joi
         .string()

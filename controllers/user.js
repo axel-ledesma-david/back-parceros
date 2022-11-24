@@ -17,6 +17,28 @@ const controller = {
       });
     }
   },
+  read: async (req, res)=> {
+    try {
+      let usersAll = await user.find()
+      if(usersAll){
+        res.status(200).json({
+          res: usersAll,
+          success: true,
+          message: "Users found"
+        })
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "The users is not found"
+        })
+      }
+    } catch (err) {
+      res.status(400).json({
+        success: false,
+        message: err.message
+      })
+    }
+  }
 };
 
 module.exports = controller;
