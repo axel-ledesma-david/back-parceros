@@ -19,8 +19,22 @@ const controller = {
         }
     },
     read: async (req, res) => {
+
+        let query = {}
+
+        if(req.query.hotelId){
+            query = {hotelId: req.query.hotelId}
+        }
+
+        if(req.query.userId){
+            query = {
+                ...query,
+                userId: req.query.userId
+            }
+        }
+
         try {
-            let all = await Show.find({ hotelId : req.query.hotelId }).populate("hotelId", "name")
+            let all = await Show.find(query).populate("hotelId", "name")
             if(all){
                 res.status(200).json({
                     res: all,
