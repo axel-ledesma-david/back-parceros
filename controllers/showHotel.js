@@ -50,6 +50,31 @@ const controller = {
             })
         }
     },
+    showById: async (req, res) => {
+        let { id } = req.params
+
+        try {
+            let showOne = await Show.findOne({ _id : id})
+
+            if(showOne){
+                res.status(200).json({
+                    res: showOne,
+                    success: true,
+                    message: 'Show found successfully'
+                }) 
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Show is not found'
+                })
+            }
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
+    },
     update: async (req, res) => {
         let {id} = req.params
 
