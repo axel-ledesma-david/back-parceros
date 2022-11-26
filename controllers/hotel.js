@@ -7,19 +7,22 @@ const controller = {
 
             res.status(201).json({
                 id : new_hotel._id,
-                succsess: true,
+                success: true,
                 message: 'Hotel created succssefuly'
             })
 
+           
+
         } catch (err) {
+            console.log(err)
             res.status(400).json({
-                succsess: false,
+                success: false,
                 message: err.message
             })
         }
     },
 
-    // comentario para poder pushear
+
 
     read: async (req, res) => {
         let query = {}
@@ -28,11 +31,18 @@ const controller = {
         if (req.query.name){
             query = {name : new RegExp(req.query.name, 'i')}
         }
+
+        if (req.query.userId){
+            query = {
+                ...query,
+                 userId : req.query.userId 
+            }
+        }
         if (req.query.order){
             order = {name: req.query.order}
         }
         try {
-            let all = await Hotel.find(query).sort(order)
+            let all = await Hotel.find(query).sort(order).populate("userId", ["_id", "role"])
             
             if (all){
                 res.status(200).json({
@@ -75,6 +85,29 @@ const controller = {
             })
         }
     },
+   /*  getHotelByAdmin: async (req, res) => {
+        try {
+            let hotelsAdmin = await Hotel.find({userId: req.query.userId})
+            console.log(req.query.userId)
+            if(hotelsAdmin){
+                res.status(200).json({
+                    res: hotelsAdmin,
+                    success: true,
+                    message: 'The hotels is found'
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Hotels is not found'
+                })
+            }
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
+    }, */
     update: async (req, res) => {
         let { id } = req.params
         try {
