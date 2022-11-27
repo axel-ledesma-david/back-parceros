@@ -38,6 +38,22 @@ const controller = {
         message: err.message
       })
     }
+  },
+  signIn : async (req, res) => {
+    let { password } = req.body
+    let { user } = req
+    try {
+      
+    } catch (err) {
+      
+    }
+  },
+  signInWithToken: async (req, res) => {
+    try {
+      
+    } catch (err) {
+      
+    }
   }
 };
 
