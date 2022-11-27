@@ -7,7 +7,7 @@ let city = require('./city')
 let showHotel = require('./showHotel')
 
 
-router.use('/api',user)
+router.use('/auth',user)
 router.use('/api',itinerarycity)
 router.use('/api', hotel)
 router.use('/api', city)
