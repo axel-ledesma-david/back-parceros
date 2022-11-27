@@ -21,7 +21,7 @@ const controller = {
        
         await User.create({ name,lastName,role,photo,age,email,password,code,verified,logged })
         
-        await accountVerificationEmail(email,code)
+        // await accountVerificationEmail(email,code)
         return userSignedUpResponse(req,res)
     } catch(error) {
         next(error)
@@ -36,7 +36,7 @@ const controller = {
 
       let user = await User.findOneAndUpdate({code:code},{verified:true},{new:true})
       if(user){
-        return res.redirect('https://www.google.com')
+        return res.redirect('/')
       }
       return userNotFoundResponse(req,res)
 
