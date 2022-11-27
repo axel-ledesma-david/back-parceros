@@ -13,9 +13,9 @@ function createClient() { //defino una funcion para construir la credencial
 
 function getTransport(client) { 
     
-    const accessToken = client.getAccessToken() //access token tiene vencimiento por eso lo calculo
+    const accessToken = client.getAccessToken() 
     return createTransport({
-        service: 'gmail',   //
+        service: 'gmail',   
         auth: {             
             user: GOOGLE_USER,
             type: 'OAuth2',
@@ -51,11 +51,11 @@ const accountVerificationEmail = async (mailNewUser,codeCrypto) => {
         from: GOOGLE_USER, 
         to: mailNewUser, 
         subject: 'Verify your new account in My Itinerary', 
-        html: getEmailBody(mailNewUser,codeCrypto,BACK_URL) 
+        html: getEmailBody({email:mailNewUser,code:codeCrypto,host:BACK_URL}) 
     }
-    await transport.sendMail( //utilizo el metodo sendMail del transportador para enviar el correo
-        mailOptions, //opciones del correo
-        (error, response) => { //función callback para manejar el error
+    await transport.sendMail( 
+        mailOptions, 
+        (error, response) => { 
             if (error) {
                 console.error(error)
                 return
