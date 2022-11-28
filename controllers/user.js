@@ -55,7 +55,7 @@ const controller = {
       if (verifiedPass) {
         const userLogged = await User.findOneAndUpdate({ _id: user.id }, { logged: true }, { new: true })
         const token = jwt.sign(
-          { id: userLogged._id, name: userLogged.name, photo: userLogged.photo, logged: userLogged.logged },
+          { id: userLogged._id, name: userLogged.name, photo: userLogged.photo, logged: userLogged.logged, role: userLogged.role },
           process.env.KEY_JWT,
           { expiresIn: 60 * 60 * 24 }
         )
@@ -74,7 +74,7 @@ const controller = {
       next(err)
     }
   },
-  signInWithToken: async (req, res) => {
+  signInWithToken: async (req, res, next ) => {
 
     let { user } = req
 
@@ -90,7 +90,7 @@ const controller = {
       })
 
     } catch (err) {
-
+      next(err)
     }
   }
 
