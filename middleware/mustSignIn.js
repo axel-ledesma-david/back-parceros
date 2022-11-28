@@ -5,7 +5,7 @@ function mustSignIn (req, res, next){
         return next()
     }
 
-    return mustSignInResponse()
+    return mustSignInResponse(req, res)
 }
 
 module.exports = mustSignIn
