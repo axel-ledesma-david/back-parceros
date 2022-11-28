@@ -1,9 +1,14 @@
 const User = require("../models/User");
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
+
+const accountVerificationEmail =require('./accountVerificationEmail')
+const { userSignedUpResponse, userNotFoundResponse, userSignedOutResponse} = require ('../config/responses')
+
 const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
 const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
+
 
 
 const controller = {
@@ -21,12 +26,22 @@ const controller = {
     console.log(password)
     try {
 
+       
+        await User.create({ name,lastName,role,photo,age,email,password,code,verified,logged })
+        
+        // await accountVerificationEmail(email,code)
+        return userSignedUpResponse(req,res)
+    } catch(error) {
+        next(error)
+
+
       await User.create({ name, lastName, role, photo, age, email, password, code, verified, logged })
 
       await accountVerificationEmail(email, code)
       return userSignedUpResponse(req, res)
     } catch (error) {
       next(error)
+
     }
   },
 
@@ -36,19 +51,32 @@ const controller = {
 
     try {
 
+
+      let user = await User.findOneAndUpdate({code:code},{verified:true},{new:true})
+      if(user){
+        return res.redirect('/')
+
       let user = await User.findOneAndUpdate({ code: code }, { verified: true }, { new: true })
       if (user) {
         return res.redirect('https://www.google.com')
+
       }
       return userNotFoundResponse(req, res)
 
     } catch (error) {
       next(error)
     }
+
+},
+
+ingresar: async(req,res,next) => {
+
+
   },
   signIn: async (req, res, next) => {
     let { password } = req.body
     let { user } = req
+
     try {
       const verifiedPass = bcryptjs.compareSync(password, user.password)
 
@@ -77,6 +105,11 @@ const controller = {
   signInWithToken: async (req, res, next ) => {
 
     let { user } = req
+
+
+ingresarConToken: async(req,res,next) => {
+
+
 
     try {
 
@@ -127,6 +160,14 @@ const controller = {
 
     let { id } = req.params
 
+
+salir: async(req,res,next) => {
+const {id} = req.user
+    try {
+await User.findOneAndUpdate({_id: id},{online:false})
+return userSignedOutResponse(req,res)
+    } catch(error) {
+
     try {
 
         let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
@@ -142,6 +183,7 @@ const controller = {
         }
 
     } catch (error) {
+
         next(error)
     }
   }
