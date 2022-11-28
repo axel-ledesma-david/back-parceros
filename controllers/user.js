@@ -92,6 +92,36 @@ const controller = {
     } catch (err) {
 
     }
+  },
+  readUser: async (req, res, next) => {
+
+      let { id } = req.params
+
+      try {
+        let userLogged = await User.findOne({ _id: id })
+        
+        if(userLogged){
+
+          let { name, lastName, photo, age, email } = userLogged
+
+          res.status(200).json({
+            res: {
+              name,
+              lastName,
+              photo,
+              age,
+              email
+            },
+            success: true,
+            message: 'The user has been found'
+          })
+        } else {
+          return userNotFoundResponse(req, res)
+        }
+       
+      } catch (err) {
+          next(err)
+      }
   }
 
 };
