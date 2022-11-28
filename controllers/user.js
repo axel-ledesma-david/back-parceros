@@ -92,6 +92,58 @@ const controller = {
     } catch (err) {
       next(err)
     }
+  },
+  readUser: async (req, res, next) => {
+
+      let { id } = req.params
+
+      try {
+        let userLogged = await User.findOne({ _id: id })
+        
+        if(userLogged.logged){
+
+          let { name, lastName, photo, age, email } = userLogged
+
+          res.status(200).json({
+            res: {
+              name,
+              lastName,
+              photo,
+              age,
+              email
+            },
+            success: true,
+            message: 'The user has been found'
+          })
+        } else {
+          return userNotFoundResponse(req, res)
+        }
+       
+      } catch (err) {
+          next(err)
+      }
+  },
+  updateDataUser: async (req, res, next) => {
+
+    let { id } = req.params
+
+    try {
+
+        let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
+
+      if (user && user.logged){
+            res.status(200).json({
+            res: user,
+            success: true,
+            message: 'User has been updated successfully'
+          }) 
+        } else {
+          return userNotFoundResponse(req, res)
+        }
+
+    } catch (error) {
+        next(error)
+    }
   }
 
 };
