@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const accountVerificationEmail =require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse} = require ('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, userSignedOutResponse} = require ('../config/responses')
 
 const controller = {
 
@@ -46,13 +46,7 @@ const controller = {
 },
 
 ingresar: async(req,res,next) => {
-    //método para que un usuario inicie sesión
-    //luego de pasar por todas las validaciones:
-        //desestructura la contraseña y el objeto user que vienen en el req
-        //compara las contraseñas
-            //si tiene éxito debe generar y retornar un token y debe redirigir a alguna página (home, welcome)
-                //además debe cambiar online de false a true
-            //si no tiene éxito debe responder con el error
+
     try {
 
     } catch(error) {
@@ -61,10 +55,7 @@ ingresar: async(req,res,next) => {
 },
 
 ingresarConToken: async(req,res,next) => {
-    //método para que un usuario que ya inicio sesión no la pierda al recargar
-    //solo para usuarios registrados en nuestra app (social loguin se maneja en front)
-    //luego de pasar por todas las validaciones:
-        //debe responder con los datos del usuario
+
     try {
 
     } catch(error) {
@@ -73,12 +64,10 @@ ingresarConToken: async(req,res,next) => {
 },
 
 salir: async(req,res,next) => {
-    //método para que un usuario cierre sesión (cambia online de true a false)
-    //solo para usuarios registrados en nuestra app (social logout se maneja en front)
-            //si tiene éxito debe debe cambiar online de true a false
-            //si no tiene éxito debe responder con el error
+const {id} = req.user
     try {
-
+await User.findOneAndUpdate({_id: id},{online:false})
+return userSignedOutResponse(req,res)
     } catch(error) {
         next(error)
     }
