@@ -3,7 +3,8 @@ const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse, userSignedOutResponse } = require('../config/responses')
+
 
 
 const controller = {
@@ -27,6 +28,7 @@ const controller = {
       return userSignedUpResponse(req, res)
     } catch (error) {
       next(error)
+
     }
   },
 
@@ -36,9 +38,13 @@ const controller = {
 
     try {
 
-      let user = await User.findOneAndUpdate({ code: code }, { verified: true }, { new: true })
-      if (user) {
-        return res.redirect('https://www.google.com')
+      let user = await User.findOneAndUpdate({code:code},{verified:true},{new:true})
+      if(user){
+        return res.redirect('/')
+     
+
+
+
       }
       return userNotFoundResponse(req, res)
 
@@ -124,11 +130,11 @@ const controller = {
   updateDataUser: async (req, res, next) => {
 
     let { id } = req.params
-
+    
     try {
-
-        let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
-
+      
+      let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
+      
       if (user && user.logged){
             res.status(200).json({
             res: user,
@@ -138,12 +144,23 @@ const controller = {
         } else {
           return userNotFoundResponse(req, res)
         }
-
-    } catch (error) {
+        
+      } catch (error) {
         next(error)
-    }
-  }
+      }
+      
+      
+  },
+  salir: async(req,res,next) => {
+    const {id} = req.user
+        try {
+    await User.findOneAndUpdate({_id: id},{online:false})
+    return userSignedOutResponse(req,res)
+        } catch(error) {
+          
+      }
 
+  }
 };
 
 
