@@ -106,7 +106,13 @@ ingresar: async(req,res,next) => {
 
     let { user } = req
 
+
 ingresarConToken: async(req,res,next) => {
+
+
+ingresarConToken: async(req,res,next) => {
+
+
 
 
     try {
