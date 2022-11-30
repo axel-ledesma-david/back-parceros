@@ -6,8 +6,8 @@ const schema = new mongoose.Schema({
     photo: { type: String, required: true },
     price: { type: Number, required: true },
     date: { type: Date, required: true },
-    hotelId: { type: mongoose.Types.ObjectId, ref: 'hotels', required: true },
-    userId: { type: mongoose.Types.ObjectId, ref: 'users', required: true }
+    hotelId: { type: mongoose.Types.ObjectId, ref: 'hotels'},
+    userId: { type: mongoose.Types.ObjectId, ref: 'users' }
 })
 
 const Show = mongoose.model('shows', schema)
