@@ -19,6 +19,6 @@ router.route('/token').post( passport.authenticate('jwt', {session : false}) , m
 router.post('/sign-up',validator(schema), accountExistsSignUp, signUp);
 router.get('/verify/:code',verify)
 router.get('/me/:id', readUser)
-router.patch('/me/:id', updateDataUser )
+router.patch('/me/:id', passport.authenticate('jwt', {session : false}) , updateDataUser )
 
 module.exports = router;

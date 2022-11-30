@@ -81,10 +81,7 @@ const controller = {
     try {
 
       res.json({
-        user : {
-          name: user.name,
-          photo: user.photo
-        },
+        response: {user},
         succes: true,
         message: 'Welcome ' + user.name
       })
@@ -102,7 +99,7 @@ const controller = {
         
         if(userLogged.logged){
 
-          let { name, lastName, photo, age, email } = userLogged
+          let { name, lastName, photo, age, email, _id } = userLogged
 
           res.status(200).json({
             res: {
@@ -110,7 +107,8 @@ const controller = {
               lastName,
               photo,
               age,
-              email
+              email,
+              _id
             },
             success: true,
             message: 'The user has been found'
