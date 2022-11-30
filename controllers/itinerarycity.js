@@ -20,7 +20,9 @@ const controller = {
 
   readitinerarycity: async (req, res) => {
     console.log(req.query);
+
     let query = {};
+    
     if (req.query.cityId) {
       query = {
         ...query,
