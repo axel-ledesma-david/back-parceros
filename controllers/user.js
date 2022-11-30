@@ -1,13 +1,9 @@
 const User = require("../models/User");
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
-
-const accountVerificationEmail =require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse, userSignedOutResponse} = require ('../config/responses')
-
 const jwt = require('jsonwebtoken')
 const accountVerificationEmail = require('./accountVerificationEmail')
-const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse } = require('../config/responses')
+const { userSignedUpResponse, userNotFoundResponse, invalidCredentialsResponse, userSignedOutResponse } = require('../config/responses')
 
 
 
@@ -26,15 +22,6 @@ const controller = {
     console.log(password)
     try {
 
-       
-        await User.create({ name,lastName,role,photo,age,email,password,code,verified,logged })
-        
-        // await accountVerificationEmail(email,code)
-        return userSignedUpResponse(req,res)
-    } catch(error) {
-        next(error)
-
-
       await User.create({ name, lastName, role, photo, age, email, password, code, verified, logged })
 
       await accountVerificationEmail(email, code)
@@ -51,14 +38,12 @@ const controller = {
 
     try {
 
-
       let user = await User.findOneAndUpdate({code:code},{verified:true},{new:true})
       if(user){
         return res.redirect('/')
+     
 
-      let user = await User.findOneAndUpdate({ code: code }, { verified: true }, { new: true })
-      if (user) {
-        return res.redirect('https://www.google.com')
+
 
       }
       return userNotFoundResponse(req, res)
@@ -66,17 +51,10 @@ const controller = {
     } catch (error) {
       next(error)
     }
-
-},
-
-ingresar: async(req,res,next) => {
-
-
   },
   signIn: async (req, res, next) => {
     let { password } = req.body
     let { user } = req
-
     try {
       const verifiedPass = bcryptjs.compareSync(password, user.password)
 
@@ -106,22 +84,10 @@ ingresar: async(req,res,next) => {
 
     let { user } = req
 
-
-ingresarConToken: async(req,res,next) => {
-
-
-ingresarConToken: async(req,res,next) => {
-
-
-
-
     try {
 
       res.json({
-        user : {
-          name: user.name,
-          photo: user.photo
-        },
+        response: {user},
         succes: true,
         message: 'Welcome ' + user.name
       })
@@ -139,7 +105,7 @@ ingresarConToken: async(req,res,next) => {
         
         if(userLogged.logged){
 
-          let { name, lastName, photo, age, email } = userLogged
+          let { name, lastName, photo, age, email, _id } = userLogged
 
           res.status(200).json({
             res: {
@@ -147,7 +113,8 @@ ingresarConToken: async(req,res,next) => {
               lastName,
               photo,
               age,
-              email
+              email,
+              _id
             },
             success: true,
             message: 'The user has been found'
@@ -163,19 +130,11 @@ ingresarConToken: async(req,res,next) => {
   updateDataUser: async (req, res, next) => {
 
     let { id } = req.params
-
-
-salir: async(req,res,next) => {
-const {id} = req.user
+    
     try {
-await User.findOneAndUpdate({_id: id},{online:false})
-return userSignedOutResponse(req,res)
-    } catch(error) {
-
-    try {
-
-        let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
-
+      
+      let user = await User.findOneAndUpdate({ _id: id }, req.body, { new: true })
+      
       if (user && user.logged){
             res.status(200).json({
             res: user,
@@ -185,13 +144,23 @@ return userSignedOutResponse(req,res)
         } else {
           return userNotFoundResponse(req, res)
         }
-
-    } catch (error) {
-
+        
+      } catch (error) {
         next(error)
-    }
-  }
+      }
+      
+      
+  },
+  salir: async(req,res,next) => {
+    const {id} = req.user
+        try {
+    await User.findOneAndUpdate({_id: id},{online:false})
+    return userSignedOutResponse(req,res)
+        } catch(error) {
+          
+      }
 
+  }
 };
 
 
