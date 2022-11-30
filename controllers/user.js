@@ -110,6 +110,10 @@ ingresar: async(req,res,next) => {
 ingresarConToken: async(req,res,next) => {
 
 
+ingresarConToken: async(req,res,next) => {
+
+
+
 
     try {
 
