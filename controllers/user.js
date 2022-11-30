@@ -157,7 +157,7 @@ const controller = {
     await User.findOneAndUpdate({_id: id},{online:false})
     return userSignedOutResponse(req,res)
         } catch(error) {
-          
+          next(error)
       }
 
   }

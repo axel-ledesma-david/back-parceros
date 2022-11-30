@@ -11,11 +11,12 @@ passport.use(
             secretOrKey: KEY_JWT 
         }, 
         async (jwt_payload,done) => {
-            console.log(jwt_payload)
             try {
+                console.log(jwt_payload)
                 let user = await Usuario.findOne({ _id :jwt_payload.id }) 
                 if (user) {
                     user = { 
+                        id: user._id,
                         name: user.name,
                         email: user.email,
                         photo: user.photo
