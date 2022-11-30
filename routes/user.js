@@ -3,7 +3,7 @@ const schema = require("../schemas/user");
 const schemaSignIn = require("../schemas/userSignIn")
 const validator = require("../middleware/validator");
 
-const { accountExists } = require("../middleware/accountExistsSignUp");
+/* const { accountExists } = require("../middleware/accountExistsSignUp");
 const { registrar, verificar } = require("../controllers/user");
 const jwt = require("jsonwebtoken")
 
@@ -38,11 +38,11 @@ const signin = async (req, res) => {
 router.post('/sign-up',validator(schema),registrar);
 router.post('/signin', signin);
 router.get('/verify/:code',verificar)
-// router.put('signout',passport.authenticate('jwt',{session:false}),salir)
+ router.put('signout',passport.authenticate('jwt',{session:false}),salir)
 
 
 
-
+ */
 const { accountExistsSignUp } = require("../middleware/accountExistsSignUp");
 const { accountExistsSignIn } = require('../middleware/accountExistsSignIn')
 const { accountHasBeenVerified } = require('../middleware/accountHasBeenVerified') 
