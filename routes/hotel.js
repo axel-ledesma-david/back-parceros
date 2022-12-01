@@ -1,6 +1,6 @@
 let router = require('express').Router()
 const schema = require('../schema/hotel')
-const validator = require('../middlewares/validatorHotel')
+const validator = require('../middleware/validator')
 
 let { create, read, readHotelDetail, update, destroy } = require('../controllers/hotel')
 

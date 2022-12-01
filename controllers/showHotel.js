@@ -4,7 +4,7 @@ const controller = {
     create: async (req, res) => {
         try {
 
-            let new_show = await Show.create(req.body)
+            let new_show = await (await Show.create(req.body)).populate("hotelId", "_id")
 
             res.status(201).json({
                 res: new_show,
