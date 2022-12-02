@@ -19,7 +19,6 @@ const controller = {
   },
 
   readitinerarycity: async (req, res) => {
-    console.log(req.query);
 
     let query = {};
     
@@ -38,7 +37,6 @@ const controller = {
     }
 
     try{
-      console.log(req.query.cityId);
       let all = await ItineraryCity.find(query)
       res.status(200).json({
         response: all,

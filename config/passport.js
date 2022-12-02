@@ -10,16 +10,17 @@ passport.use(
             jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderAsBearerToken(), 
             secretOrKey: KEY_JWT 
         }, 
-        async (jwt_payload,done) => {
+        async (jwt_payload, done) => {
             try {
-                console.log(jwt_payload)
                 let user = await Usuario.findOne({ _id :jwt_payload.id }) 
                 if (user) {
                     user = { 
                         id: user._id,
                         name: user.name,
                         email: user.email,
-                        photo: user.photo
+                        photo: user.photo, 
+                        role: user.role,
+                        logged: user.logged
                     }
                     return done(null, user)
                 } else {

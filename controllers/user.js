@@ -19,7 +19,6 @@ const controller = {
     let code = crypto.randomBytes(10).toString('hex')
 
     password = bcryptjs.hashSync(password, 10)
-    console.log(password)
     try {
 
       await User.create({ name, lastName, role, photo, age, email, password, code, verified, logged })
@@ -67,7 +66,7 @@ const controller = {
         )
 
         return res.status(200).json({
-               response: { user, token },
+               response: { user: userLogged, token },
                success: true,
                message: `Welcome ${user.name} ${user.lastName}`
         })
@@ -154,7 +153,7 @@ const controller = {
   salir: async(req,res,next) => {
     const {id} = req.user
         try {
-    await User.findOneAndUpdate({_id: id},{online:false})
+    await User.findOneAndUpdate({_id: id},{logged:false})
     return userSignedOutResponse(req,res)
         } catch(error) {
           next(error)
