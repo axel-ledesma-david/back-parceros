@@ -47,6 +47,13 @@ function verifyResponse(req,res) {
     })
 }
 
+function verifyUserResponse (req, res) {
+    return res.status(400).json({
+           success: false,
+           message: 'This comment is not your!!'
+    })
+}
+
 module.exports = {
     userSignedUpResponse,
     userExistsResponse,
@@ -54,5 +61,6 @@ module.exports = {
     userSignedOutResponse,
     mustSignInResponse,
     invalidCredentialsResponse,
-    verifyResponse
+    verifyResponse,
+    verifyUserResponse
 }
