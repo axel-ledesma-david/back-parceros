@@ -7,7 +7,7 @@ const controller = {
 
         let  query = {}
 
-        if (req.query.showId) {
+        if (req.query.showId) { 
             query = { showId: req.query.showId }
         }
 
@@ -50,6 +50,61 @@ const controller = {
             })
             
         }
+    },
+    update: async (req, res) => {
+        let { id } = req.params
+
+        try {
+            
+            let oneComment = await Comment.findOneAndUpdate({ _id : id }, req.body, { new: true })
+            if(oneComment){
+                res.status(200).json({
+                    res: oneComment,
+                    success: true,
+                    message: 'comment updated successfully'
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'The comment is not found'
+                })
+            }
+
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
+
+    },
+    destroy: async (req, res) => {
+        let { id } = req.params
+
+        try {
+            
+            let oneComment = await Comment.findOneAndDelete({ _id: id })
+
+            if(oneComment){
+                res.status(200).json({
+                    res: oneComment._id,
+                    success: true,
+                    message: 'Comment deleted successfully'
+                }) 
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Comment is not found'
+                })
+            }
+
+        } catch (err) {
+            res.status(400).json({
+                success: false,
+                message: err.message
+            })
+        }
+
     }
 
 }
