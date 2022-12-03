@@ -9,7 +9,7 @@ const schema = joi.object({
                 .required()
                 .min(3)
                 .messages({
-                    "string.min": "The comment must have a minimum of three characters!"
+                    "string.min": "The comment must have a minimum of three characters!."
                 })
 })
 
