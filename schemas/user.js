@@ -8,6 +8,7 @@ const schema = joi.object({
   lastName: joi.string().required()
   .min(3)
   .max(50) ,
+  
   role: joi.string().required(),
 
   photo: joi.string().required(),
