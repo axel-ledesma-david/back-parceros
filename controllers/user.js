@@ -11,7 +11,7 @@ const controller = {
 
 
   signUp: async (req, res, next) => {
-
+    console.log("sing up");
     let { name, lastName, role, photo, age, email, password } = req.body
 
     let verified = false

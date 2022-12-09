@@ -57,7 +57,7 @@ const { signUp, verify, signIn, signInWithToken, readUser, updateDataUser, salir
 
 router.post( '/sign-in', validator(schemaSignIn), accountExistsSignIn, accountHasBeenVerified, signIn)
 router.route('/token').post(passport.authenticate('jwt', {session : false}) , mustSignIn, signInWithToken)
-router.post('/sign-up',validator(schema), accountExistsSignUp, signUp);
+router.post('/sign-up', signUp);
 router.get('/verify/:code',verify)
 router.get('/me/:id', readUser)
 router.patch('/me/:id', passport.authenticate('jwt', {session : false}) , updateDataUser )
