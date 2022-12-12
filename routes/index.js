@@ -12,7 +12,9 @@ let comment = require('./comment')
 
 
 router.use("/auth", user);
+
 router.use("/api", itinerarycity);
+
 router.use("/api", hotel);
 router.use("/api", city);
 router.use("/api", showHotel);
