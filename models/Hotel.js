@@ -10,4 +10,6 @@ const schema = new mongoose.Schema({
 
 const Hotel = mongoose.model('hotels', schema)
 
+
+
 module.exports = Hotel
